@@ -10,7 +10,7 @@ import android.os.Bundle;
  */
 public class alert extends DialogFragment {
 
-    String hello="Hello World!";
+    String hello="Hello, AlL!";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

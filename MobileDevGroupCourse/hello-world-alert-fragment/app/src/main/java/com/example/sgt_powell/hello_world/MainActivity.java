@@ -10,7 +10,7 @@ import android.view.View;
 
 public class MainActivity extends Activity {
 
-    String Hello = "Hello World";
+    String Hello = "Hello World From Main Activity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
