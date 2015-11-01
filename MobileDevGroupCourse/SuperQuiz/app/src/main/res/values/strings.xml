@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SuperQuiz</string>
+    <string name="falseString">False</string>
+    <string name="trueString">True</string>
+    <string name="correctToastMessage">WHOA, Nice Job! Your super smart.</string>
+    <string name="incorrectToastMessage">AHH Sorry, your super smart try again.</string>
+    <string name="question_mideast">The Suez Canal connects the Red Sea to the Indain Ocean.</string>
+    <string name="question_oceans">The Pacific Ocean is larger than the Atlantic Ocean.</string>
+    <string name="question_america">The Amazon River is the longest river in the Americas.</string>
+    <string name="question_africa">The source of the Nile River is in Egypt.</string>
+</resources>
