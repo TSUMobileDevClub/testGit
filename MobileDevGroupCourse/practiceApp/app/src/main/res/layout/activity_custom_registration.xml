@@ -22,14 +22,16 @@
         android:id="@+id/reg_username_textfield"
         android:layout_below="@+id/reg_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp" />
+        android:layout_marginTop="43dp"
+        android:hint="Username" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/reg_user_email"
         android:layout_below="@+id/reg_username_textfield"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:hint="Email" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -38,7 +40,8 @@
         android:ems="10"
         android:id="@+id/reg_user_password"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/reg_user_email" />
+        android:layout_below="@+id/reg_user_email"
+        android:hint="Password" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -47,7 +50,8 @@
         android:ems="10"
         android:layout_below="@+id/reg_user_password"
         android:layout_centerHorizontal="true"
-        android:id="@+id/reg_user_2nd_password" />
+        android:id="@+id/reg_user_2nd_password"
+        android:hint="Re-type Password" />
 
     <Button
         android:layout_width="wrap_content"
