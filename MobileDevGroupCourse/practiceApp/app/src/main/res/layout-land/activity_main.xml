@@ -27,7 +27,7 @@
         android:src="@drawable/custom_logo" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/user_sign_in_name_textview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -40,12 +40,12 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/user_sign_in_password_textview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/user_sign_in_name_textview"
         android:ems="10"
         android:hint="Account Password"
         android:inputType="textPassword" />
@@ -54,7 +54,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText"
+        android:layout_above="@+id/user_sign_in_name_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:text="User Login"
@@ -64,7 +64,7 @@
         android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/user_sign_in_password_textview"
         android:layout_centerHorizontal="true"
         android:text="Login" />
 
@@ -84,9 +84,9 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editText2"
+        android:layout_alignEnd="@+id/user_sign_in_password_textview"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText2"
+        android:layout_alignRight="@+id/user_sign_in_password_textview"
         android:layout_marginEnd="31dp"
         android:layout_marginRight="31dp"
         android:text="Register" />

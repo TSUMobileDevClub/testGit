@@ -1,5 +1,6 @@
 package com.example.sgt_powell.practiceapp;
 
+import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ public class CustomRegistration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_registration);
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         username = (TextView) findViewById(R.id.reg_username_textfield);
         //lengthCheck(username.getText());
@@ -38,7 +39,14 @@ public class CustomRegistration extends AppCompatActivity {
         newRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                performChecks(username.getText(), email.getText(), password.getText(), password_verified.getText());
+                if(performChecks(username.getText(), email.getText(), password.getText(), password_verified.getText())){
+                    Toast.makeText(CustomRegistration.this, "Account Saved", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CustomRegistration.this, MainActivity.class);
+                    intent.putExtra("NEW_USERNAME",username.getText());
+                    intent.putExtra("NEW_PASSWORD",password.getText());
+                    startActivity(intent);
+
+                }
             }
         });
 
@@ -47,13 +55,23 @@ public class CustomRegistration extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()){
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch(item.getItemId()){
+//            case android.R.id.home:
+//                NavUtils.navigateUpFromSameTask(this);
+//                return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
