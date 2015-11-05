@@ -23,7 +23,6 @@ public class CustomRegistration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_registration);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         username = (TextView) findViewById(R.id.reg_username_textfield);
         //lengthCheck(username.getText());
@@ -53,19 +52,9 @@ public class CustomRegistration extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    //    @Override
+//    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch(item.getItemId()){
+//        switch (item.getItemId()){
 //            case android.R.id.home:
 //                NavUtils.navigateUpFromSameTask(this);
 //                return true;

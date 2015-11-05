@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "vb6VcrnYE5DEOzJdLAXGvzOk2ETkeWoUUUx7Wxdv", "japwpxmxYhNTHqsFJbSOyGLVvOtQ3csUT9Xqz7RE");
+//        ParseObject testObject = new ParseObject("TestObject");
+//        testObject.put("foo", "bar");
+//        testObject.saveInBackground();
 
         usernameTextBox = (EditText) findViewById(R.id.user_sign_in_name_textview);
         passwordTextBox = (EditText) findViewById(R.id.user_sign_in_password_textview);
