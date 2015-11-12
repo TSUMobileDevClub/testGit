@@ -12,17 +12,27 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
 public class CustomRegistration extends AppCompatActivity {
     private TextView username;
     private TextView email;
     private TextView password;
     private TextView password_verified;
-
+    private ParseObject registrationData;
+    private ParseUser userRegistrationData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_registration);
+        //Setting up parse user storage
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, getString(R.string.parseID1), getString(R.string.parseID2));
+        registrationData= new ParseObject("TestObject");
+        userRegistrationData = new ParseUser();
 
         username = (TextView) findViewById(R.id.reg_username_textfield);
         //lengthCheck(username.getText());
@@ -42,8 +52,13 @@ public class CustomRegistration extends AppCompatActivity {
                     Toast.makeText(CustomRegistration.this, "Account Saved", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CustomRegistration.this, MainActivity.class);
                     intent.putExtra("NEW_USERNAME",username.getText());
-                    intent.putExtra("NEW_PASSWORD",password.getText());
+                    intent.putExtra("NEW_PASSWORD", password.getText());
                     startActivity(intent);
+
+                    registrationData.put("Username", username.getText());
+                    registrationData.put("Email", email.getText());
+                    registrationData.put("Password", password_verified.getText());
+                    registrationData.saveInBackground();
 
                 }
             }
@@ -52,15 +67,15 @@ public class CustomRegistration extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()){
-//            case android.R.id.home:
-//                NavUtils.navigateUpFromSameTask(this);
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

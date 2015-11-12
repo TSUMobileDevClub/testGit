@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "vb6VcrnYE5DEOzJdLAXGvzOk2ETkeWoUUUx7Wxdv", "japwpxmxYhNTHqsFJbSOyGLVvOtQ3csUT9Xqz7RE");
+//        Parse.enableLocalDatastore(this);
+//        Parse.initialize(this, getString(R.string.parseID1), getString(R.string.parseID2));
 //        ParseObject testObject = new ParseObject("TestObject");
-//        testObject.put("foo", "bar");
+//        testObject.put("C", "Created");
 //        testObject.saveInBackground();
 
         usernameTextBox = (EditText) findViewById(R.id.user_sign_in_name_textview);
@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==R.id.action_settings){
-            Intent intent = new Intent(this, CustomRegistration.class);
-            startActivity(intent);
+            Intent i = new Intent(this, RegistrationActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void register(){
         //Send to RegistrationActivity
-        Intent i = new Intent(this, RegistrationActivity.class);
-        startActivity(i);
+        Intent intent = new Intent(this, CustomRegistration.class);
+        startActivity(intent);
     }
 
     private void setNewUserText(){
