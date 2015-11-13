@@ -15,13 +15,14 @@ import android.widget.Toast;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
+
+import java.text.ParseException;
 
 public class CustomRegistration extends AppCompatActivity {
-    private TextView username;
-    private TextView email;
-    private TextView password;
-    private TextView password_verified;
-    private ParseObject registrationData;
+    private TextView username, email, password, password_verified;
+    private String regUsername, regEmail, regPassword;
+    private ParseObject registerUser;
     private ParseUser userRegistrationData;
 
     @Override
@@ -31,7 +32,7 @@ public class CustomRegistration extends AppCompatActivity {
         //Setting up parse user storage
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, getString(R.string.parseID1), getString(R.string.parseID2));
-        registrationData= new ParseObject("TestObject");
+        registerUser = new ParseObject("User");
         userRegistrationData = new ParseUser();
 
         username = (TextView) findViewById(R.id.reg_username_textfield);
@@ -48,17 +49,35 @@ public class CustomRegistration extends AppCompatActivity {
         newRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(performChecks(username.getText(), email.getText(), password.getText(), password_verified.getText())){
                     Toast.makeText(CustomRegistration.this, "Account Saved", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CustomRegistration.this, MainActivity.class);
-                    intent.putExtra("NEW_USERNAME",username.getText());
-                    intent.putExtra("NEW_PASSWORD", password.getText());
-                    startActivity(intent);
 
-                    registrationData.put("Username", username.getText());
-                    registrationData.put("Email", email.getText());
-                    registrationData.put("Password", password_verified.getText());
-                    registrationData.saveInBackground();
+                    regUsername = username.getText().toString().trim();
+                    regEmail = email.getText().toString().trim();
+                    regPassword = password_verified.getText().toString().trim();
+
+//                    Intent intent = new Intent(CustomRegistration.this, MainActivity.class);
+//                    intent.putExtra("NEW_USERNAME",username.getText());
+//                    intent.putExtra("NEW_PASSWORD", password.getText());
+//                    startActivity(intent);
+
+
+                    userRegistrationData.signUpInBackground();
+                    userRegistrationData.setUsername(regUsername);
+                    userRegistrationData.setEmail(regEmail);
+                    userRegistrationData.setPassword(regPassword);
+                    userRegistrationData.signUpInBackground(new SignUpCallback() {
+                        @Override
+                        public void done(com.parse.ParseException e) {
+                                Toast toast = signUpReturn(e);
+                                toast.show();
+                            if (e == null){
+                                Intent intent = new Intent(CustomRegistration.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
 
                 }
             }
@@ -115,7 +134,11 @@ public class CustomRegistration extends AppCompatActivity {
         return pass1.equals(pass2);
     }
 
-
-
+    private Toast signUpReturn(Exception e){
+        if (e!=null){
+            return Toast.makeText(this, "Whoa, Houston We Have A Problem: "+ e , Toast.LENGTH_SHORT);
+        }else
+            return Toast.makeText(this, "Congratulations New User!", Toast.LENGTH_SHORT);
+    }
 
 }
