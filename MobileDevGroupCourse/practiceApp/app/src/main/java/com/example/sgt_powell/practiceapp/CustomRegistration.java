@@ -22,7 +22,6 @@ import java.text.ParseException;
 public class CustomRegistration extends AppCompatActivity {
     private TextView username, email, password, password_verified;
     private String regUsername, regEmail, regPassword;
-    private ParseObject registerUser;
     private ParseUser userRegistrationData;
 
     @Override
@@ -30,20 +29,13 @@ public class CustomRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_registration);
         //Setting up parse user storage
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, getString(R.string.parseID1), getString(R.string.parseID2));
-        registerUser = new ParseObject("User");
+
         userRegistrationData = new ParseUser();
 
         username = (TextView) findViewById(R.id.reg_username_textfield);
-        //lengthCheck(username.getText());
-
         email = (TextView) findViewById(R.id.reg_user_email);
-        //isEmail(email.getText());
-
         password = (TextView) findViewById(R.id.reg_user_password);
         password_verified = (TextView) findViewById(R.id.reg_user_2nd_password);
-        //passwordValidation(password.getText(), password_verified.getText());
 
         Button newRegisterBtn = (Button) findViewById(R.id.reg_button);
         newRegisterBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,17 +43,11 @@ public class CustomRegistration extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(performChecks(username.getText(), email.getText(), password.getText(), password_verified.getText())){
-                    Toast.makeText(CustomRegistration.this, "Account Saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CustomRegistration.this, "Saving Account....", Toast.LENGTH_SHORT).show();
 
                     regUsername = username.getText().toString().trim();
                     regEmail = email.getText().toString().trim();
                     regPassword = password_verified.getText().toString().trim();
-
-//                    Intent intent = new Intent(CustomRegistration.this, MainActivity.class);
-//                    intent.putExtra("NEW_USERNAME",username.getText());
-//                    intent.putExtra("NEW_PASSWORD", password.getText());
-//                    startActivity(intent);
-
 
                     userRegistrationData.signUpInBackground();
                     userRegistrationData.setUsername(regUsername);
